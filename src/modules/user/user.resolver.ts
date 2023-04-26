@@ -8,22 +8,22 @@ import { UpdateUserInput } from './dto/update-user.input';
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
-  @Mutation(() => Boolean)
+  @Mutation(() => Boolean, { description: '新增用户' })
   createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
     return this.userService.create(createUserInput);
   }
 
-  @Query(() => User)
+  @Query(() => User, { description: '使用ID查询用户' })
   findOne(@Args('id') id: string) {
     return this.userService.findOne(id);
   }
 
-  @Mutation(() => Boolean)
+  @Mutation(() => Boolean, { description: '更新用户' })
   updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
     return this.userService.update(updateUserInput.id, updateUserInput);
   }
 
-  @Mutation(() => Boolean)
+  @Mutation(() => Boolean, { description: '删除用户' })
   removeUser(@Args('id') id: string) {
     return this.userService.remove(id);
   }
